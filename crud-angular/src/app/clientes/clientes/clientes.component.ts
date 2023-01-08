@@ -10,7 +10,10 @@ import { Cliente } from '../model/cliente';
 //implements OnInit abaixo 
 export class ClientesComponent  {
 
-  clientes: Cliente[] = [];
+  clientes: Cliente[] = [
+    {_id:'1',name:'Mario', endereco:'Pass São João'}
+  ];
+  displayedColumns=['name', 'endereco']
 
   constructor() {
     // this.clientes = [];
