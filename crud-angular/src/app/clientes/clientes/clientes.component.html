@@ -1,23 +1,23 @@
+<mat-card>
+  <mat-card-content>
+
+  <mat-toolbar color="primary">Clientes Cadastrados</mat-toolbar>
+
 <table mat-table [dataSource]="clientes" class="mat-elevation-z8">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nome</th>
+    <td mat-cell *matCellDef="let cliente">{{ cliente.name }}</td>
+  </ng-container>
 
+  <!-- Endereço Column -->
+  <ng-container matColumnDef="endereco">
+    <th mat-header-cell *matHeaderCellDef>Endereço</th>
+    <td mat-cell *matCellDef="let cliente">{{ cliente.endereco }}</td>
+  </ng-container>
 
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let cliente"> {{cliente.name}} </td>
-    </ng-container>
-  
-    <!-- Endereço Column -->
-    <ng-container matColumnDef="endereco">
-      <th mat-header-cell *matHeaderCellDef> Endereço </th>
-      <td mat-cell *matCellDef="let cliente"> {{cliente.endereco}} </td>
-    </ng-container>
-  
-   
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  
-  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+</mat-card-content>
+</mat-card>

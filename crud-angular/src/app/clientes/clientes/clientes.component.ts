@@ -7,7 +7,7 @@ import { Cliente } from '../model/cliente';
   styleUrls: ['./clientes.component.scss']
 })
 
-//implements OnInit abaixo 
+//implements OnInit abaixo
 export class ClientesComponent  {
 
   clientes: Cliente[] = [
