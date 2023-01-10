@@ -1,6 +1,7 @@
 import { ClientesService } from './../../service/clientes.service';
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../model/cliente';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clientes',
@@ -10,7 +11,7 @@ import { Cliente } from '../model/cliente';
 
 //implements OnInit abaixo
 export class ClientesComponent {
-  clientes: Cliente[] = [];
+  clientes: Observable <Cliente[]>;
   displayedColumns = ['name', 'endereco'];
 
   // clientesService: ClientesService;
@@ -19,5 +20,9 @@ export class ClientesComponent {
     // this.clientes = [];
     //this.clientesService = new ClientesService();
     this.clientes = this.clientesService.list();
+  }
+
+  ngOnInit(): void{
+
   }
 }
