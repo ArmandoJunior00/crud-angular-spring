@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 
 //implements OnInit abaixo
 export class ClientesComponent {
-  clientes: Observable <Cliente[]>;
+  clientes$: Observable <Cliente[]>;
   displayedColumns = ['name', 'endereco'];
 
   // clientesService: ClientesService;
@@ -19,7 +19,7 @@ export class ClientesComponent {
   constructor(private clientesService: ClientesService) {
     // this.clientes = [];
     //this.clientesService = new ClientesService();
-    this.clientes = this.clientesService.list();
+    this.clientes$ = this.clientesService.list();
   }
 
   ngOnInit(): void{
