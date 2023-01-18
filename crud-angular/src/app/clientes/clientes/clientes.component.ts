@@ -1,7 +1,10 @@
-import { ClientesService } from './../../service/clientes.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+
 import { Cliente } from '../model/cliente';
-import { Observable } from 'rxjs';
+import { ClientesService } from './../../service/clientes.service';
 
 @Component({
   selector: 'app-clientes',
@@ -11,18 +14,30 @@ import { Observable } from 'rxjs';
 
 //implements OnInit abaixo
 export class ClientesComponent {
-  clientes$: Observable <Cliente[]>;
+  clientes$: Observable<Cliente[]>;
   displayedColumns = ['name', 'endereco'];
 
   // clientesService: ClientesService;
 
-  constructor(private clientesService: ClientesService) {
+  constructor(private clientesService: ClientesService,
+    public dialog: MatDialog
+    ) {
     // this.clientes = [];
     //this.clientesService = new ClientesService();
-    this.clientes$ = this.clientesService.list();
+    this.clientes$ = this.clientesService.list()
+    .pipe(
+      catchError((error) => {
+        this.onError('Erro ao carregar cliente.')
+        return of([]);
+      })
+    );
   }
 
-  ngOnInit(): void{
-
+  onError(errorMSG: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMSG
+    });
   }
+
+  ngOnInit(): void {}
 }
